@@ -1,0 +1,113 @@
+{
+  "App": {
+    "name": "Global Beauty",
+    "tagline": "在韩国查找并发起皮肤科/整形外科预约"
+  },
+  "Auth": {
+    "login": "登录",
+    "loginWithGoogle": "使用Google登录",
+    "logout": "退出登录",
+    "loggedInAs": "已登录为"
+  },
+  "Nav": {
+    "search": "搜索",
+    "compare": "对比",
+    "booking": "预约",
+    "myBookings": "我的预约",
+    "ops": "运营"
+  },
+  "City": {
+    "seoul": "首尔",
+    "busan": "釜山",
+    "jeju": "济州"
+  },
+  "Search": {
+    "title": "搜索诊所",
+    "keywordPlaceholder": "按诊所名、地区、项目搜索…",
+    "cityLabel": "城市",
+    "tagsLabel": "标签",
+    "sortLabel": "排序",
+    "sortDistance": "距离",
+    "sortReviews": "评论数",
+    "sortFastResponse": "回复更快",
+    "resultCount": "{count} 条结果",
+    "compareAdd": "加入对比",
+    "viewDetail": "查看详情"
+  },
+  "Clinic": {
+    "address": "地址",
+    "phone": "电话",
+    "languages": "语言",
+    "hours": "营业时间",
+    "about": "介绍",
+    "reviews": "评论",
+    "requestBooking": "发起预约"
+  },
+  "Compare": {
+    "title": "对比诊所",
+    "empty": "请从搜索结果中选择最多 3 家诊所。"
+  },
+  "Booking": {
+    "title": "预约请求",
+    "procedure": "项目",
+    "preferredDate": "期望日期",
+    "timeWindow": "时间段",
+    "budget": "预算范围",
+    "language": "沟通语言",
+    "notes": "备注/问题",
+    "photos": "参考照片（可选）",
+    "submit": "提交",
+    "submittedTitle": "已提交",
+    "submittedDesc": "我们的礼宾将与医院确认并回复你。"
+  },
+  "Ops": {
+    "title": "运营队列",
+    "status": "状态",
+    "sla": "SLA",
+    "actions": "操作",
+    "openRequest": "打开",
+    "setStatus": "设置状态"
+  },
+  "MyBookings": {
+    "title": "我的预约请求",
+    "description": "输入您的邮箱和任意一个预约码，查看所有预约",
+    "emailLabel": "邮箱",
+    "accessCodeLabel": "访问码",
+    "accessCodeHint": "您之前预约时获得的任意一个访问码",
+    "submit": "查看我的预约",
+    "loading": "加载中...",
+    "noBookingYet": "还没有预约？",
+    "searchClinics": "搜索诊所",
+    "changeEmail": "更换邮箱",
+    "noBookings": "未找到与此邮箱相关的预约",
+    "viewDetails": "详情",
+    "invalidCredentials": "邮箱或访问码无效",
+    "networkError": "网络错误，请重试。",
+    "orLoginToView": "或登录查看所有预约",
+    "status": {
+      "received": "已收到",
+      "contactingHospital": "联系医院中",
+      "proposedOptions": "已提供选项",
+      "confirmed": "已确认",
+      "cancelled": "已取消",
+      "needsMoreInfo": "需要更多信息",
+      "noAvailability": "无空位"
+    }
+  },
+  "BookingDetail": {
+    "title": "预约详情",
+    "clinic": "诊所",
+    "procedure": "项目",
+    "preferredDate": "期望日期",
+    "timeSlot": "时间段",
+    "budget": "预算",
+    "status": "状态",
+    "timeline": "状态历史",
+    "confirmedDate": "确认的预约",
+    "confirmedPrice": "价格",
+    "proposedOptions": "建议选项",
+    "notes": "备注",
+    "accessCode": "访问码",
+    "backToList": "返回预约列表"
+  }
+}

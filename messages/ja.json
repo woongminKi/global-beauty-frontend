@@ -1,0 +1,113 @@
+{
+  "App": {
+    "name": "Global Beauty",
+    "tagline": "韓国の美容医療クリニックを探して予約リクエスト"
+  },
+  "Auth": {
+    "login": "ログイン",
+    "loginWithGoogle": "Googleでログイン",
+    "logout": "ログアウト",
+    "loggedInAs": "ログイン中"
+  },
+  "Nav": {
+    "search": "検索",
+    "compare": "比較",
+    "booking": "予約",
+    "myBookings": "予約一覧",
+    "ops": "運営"
+  },
+  "City": {
+    "seoul": "ソウル",
+    "busan": "釜山",
+    "jeju": "済州"
+  },
+  "Search": {
+    "title": "クリニック検索",
+    "keywordPlaceholder": "クリニック名・エリア・施術で検索…",
+    "cityLabel": "都市",
+    "tagsLabel": "タグ",
+    "sortLabel": "並び替え",
+    "sortDistance": "距離",
+    "sortReviews": "レビュー数",
+    "sortFastResponse": "返信が早い",
+    "resultCount": "{count}件",
+    "compareAdd": "比較に追加",
+    "viewDetail": "詳細を見る"
+  },
+  "Clinic": {
+    "address": "住所",
+    "phone": "電話",
+    "languages": "対応言語",
+    "hours": "営業時間",
+    "about": "紹介",
+    "reviews": "レビュー",
+    "requestBooking": "予約リクエスト"
+  },
+  "Compare": {
+    "title": "クリニック比較",
+    "empty": "検索結果から最大3件を選択してください。"
+  },
+  "Booking": {
+    "title": "予約リクエスト",
+    "procedure": "施術",
+    "preferredDate": "希望日",
+    "timeWindow": "時間帯",
+    "budget": "予算",
+    "language": "希望言語",
+    "notes": "相談内容",
+    "photos": "写真（任意）",
+    "submit": "送信",
+    "submittedTitle": "受付しました",
+    "submittedDesc": "コンシェルジュが病院へ確認し、ご連絡します。"
+  },
+  "Ops": {
+    "title": "運営キュー",
+    "status": "ステータス",
+    "sla": "SLA",
+    "actions": "操作",
+    "openRequest": "開く",
+    "setStatus": "ステータス変更"
+  },
+  "MyBookings": {
+    "title": "予約リクエスト一覧",
+    "description": "メールアドレスと予約コードを入力して、すべての予約を確認できます",
+    "emailLabel": "メールアドレス",
+    "accessCodeLabel": "アクセスコード",
+    "accessCodeHint": "以前の予約で発行されたコード",
+    "submit": "予約を確認",
+    "loading": "読み込み中...",
+    "noBookingYet": "まだ予約がありませんか？",
+    "searchClinics": "クリニックを探す",
+    "changeEmail": "メール変更",
+    "noBookings": "このメールアドレスに関連する予約はありません",
+    "viewDetails": "詳細",
+    "invalidCredentials": "メールアドレスまたはアクセスコードが無効です",
+    "networkError": "ネットワークエラー。もう一度お試しください。",
+    "orLoginToView": "ログインして予約を確認",
+    "status": {
+      "received": "受付済",
+      "contactingHospital": "病院確認中",
+      "proposedOptions": "オプション提案中",
+      "confirmed": "確定",
+      "cancelled": "キャンセル",
+      "needsMoreInfo": "追加情報必要",
+      "noAvailability": "空きなし"
+    }
+  },
+  "BookingDetail": {
+    "title": "予約詳細",
+    "clinic": "クリニック",
+    "procedure": "施術",
+    "preferredDate": "希望日",
+    "timeSlot": "時間帯",
+    "budget": "予算",
+    "status": "ステータス",
+    "timeline": "ステータス履歴",
+    "confirmedDate": "確定した予約",
+    "confirmedPrice": "料金",
+    "proposedOptions": "提案オプション",
+    "notes": "メモ",
+    "accessCode": "アクセスコード",
+    "backToList": "予約一覧に戻る"
+  }
+}

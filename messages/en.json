@@ -1,0 +1,113 @@
+{
+  "App": {
+    "name": "Global Beauty",
+    "tagline": "Find and book dermatology & plastic surgery in Korea"
+  },
+  "Auth": {
+    "login": "Login",
+    "loginWithGoogle": "Login with Google",
+    "logout": "Logout",
+    "loggedInAs": "Logged in as"
+  },
+  "Nav": {
+    "search": "Search",
+    "compare": "Compare",
+    "booking": "Booking",
+    "myBookings": "My Bookings",
+    "ops": "Ops"
+  },
+  "City": {
+    "seoul": "Seoul",
+    "busan": "Busan",
+    "jeju": "Jeju"
+  },
+  "Search": {
+    "title": "Search clinics",
+    "keywordPlaceholder": "Search by clinic name, area, procedure…",
+    "cityLabel": "City",
+    "tagsLabel": "Tags",
+    "sortLabel": "Sort",
+    "sortDistance": "Distance",
+    "sortReviews": "Reviews",
+    "sortFastResponse": "Fast response",
+    "resultCount": "{count} results",
+    "compareAdd": "Add to compare",
+    "viewDetail": "View details"
+  },
+  "Clinic": {
+    "address": "Address",
+    "phone": "Phone",
+    "languages": "Languages",
+    "hours": "Hours",
+    "about": "About",
+    "reviews": "Reviews",
+    "requestBooking": "Request booking"
+  },
+  "Compare": {
+    "title": "Compare clinics",
+    "empty": "Select up to 3 clinics from search results."
+  },
+  "Booking": {
+    "title": "Request booking",
+    "procedure": "Procedure",
+    "preferredDate": "Preferred date",
+    "timeWindow": "Time window",
+    "budget": "Budget range",
+    "language": "Preferred language",
+    "notes": "Notes / questions",
+    "photos": "Reference photos (optional)",
+    "submit": "Submit request",
+    "submittedTitle": "Request received",
+    "submittedDesc": "Our concierge will confirm with the hospital and get back to you."
+  },
+  "Ops": {
+    "title": "Ops queue",
+    "status": "Status",
+    "sla": "SLA",
+    "actions": "Actions",
+    "openRequest": "Open",
+    "setStatus": "Set status"
+  },
+  "MyBookings": {
+    "title": "My Booking Requests",
+    "description": "Enter your email and any booking code to view all your reservations",
+    "emailLabel": "Email",
+    "accessCodeLabel": "Access Code",
+    "accessCodeHint": "Any code from your previous booking",
+    "submit": "View My Bookings",
+    "loading": "Loading...",
+    "noBookingYet": "Don't have a booking yet?",
+    "searchClinics": "Search Clinics",
+    "changeEmail": "Change Email",
+    "noBookings": "No booking requests found for this email",
+    "viewDetails": "Details",
+    "invalidCredentials": "Invalid email or access code",
+    "networkError": "Network error. Please try again.",
+    "orLoginToView": "Or login to view all your bookings",
+    "status": {
+      "received": "Received",
+      "contactingHospital": "Contacting Hospital",
+      "proposedOptions": "Options Available",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled",
+      "needsMoreInfo": "More Info Needed",
+      "noAvailability": "No Availability"
+    }
+  },
+  "BookingDetail": {
+    "title": "Booking Details",
+    "clinic": "Clinic",
+    "procedure": "Procedure",
+    "preferredDate": "Preferred Date",
+    "timeSlot": "Time Slot",
+    "budget": "Budget",
+    "status": "Status",
+    "timeline": "Status Timeline",
+    "confirmedDate": "Confirmed Appointment",
+    "confirmedPrice": "Price",
+    "proposedOptions": "Proposed Options",
+    "notes": "Your Notes",
+    "accessCode": "Access Code",
+    "backToList": "Back to My Bookings"
+  }
+}
