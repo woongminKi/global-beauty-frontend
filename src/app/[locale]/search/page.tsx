@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useParams, useSearchParams } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
-import { Search, MapPin, SlidersHorizontal, X } from 'lucide-react';
+import { Search, MapPin, X } from 'lucide-react';
 import { searchClinics, type Clinic } from '@/lib/api';
 import { ClinicCard } from '@/components/ClinicCard';
 import { Button } from '@/components/ui/button';
@@ -20,7 +20,6 @@ const tags = [
   'foreigner-friendly',
   'weekend-available',
 ] as const;
-const sortOptions = ['rating', 'reviewCount', 'distance'] as const;
 
 export default function SearchPage() {
   const t = useTranslations();

@@ -52,17 +52,13 @@ export default function BookingRequestPage() {
   const [timeSlot, setTimeSlot] = useState('');
   const [budgetMin, setBudgetMin] = useState('');
   const [budgetMax, setBudgetMax] = useState('');
-  const [email, setEmail] = useState('');
+  const [guestEmail, setGuestEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [notes, setNotes] = useState('');
   const [error, setError] = useState('');
 
-  // Auto-fill email for logged-in users
-  useEffect(() => {
-    if (isAuthenticated && user?.email && !email) {
-      setEmail(user.email);
-    }
-  }, [isAuthenticated, user, email]);
+  // Use user email if authenticated, otherwise use guest input
+  const email = isAuthenticated && user?.email ? user.email : guestEmail;
 
   useEffect(() => {
     async function fetchClinic() {
@@ -305,8 +301,8 @@ export default function BookingRequestPage() {
               </label>
               <Input
                 type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={guestEmail}
+                onChange={(e) => setGuestEmail(e.target.value)}
                 required
                 placeholder="your@email.com"
                 className="h-12 rounded-xl"

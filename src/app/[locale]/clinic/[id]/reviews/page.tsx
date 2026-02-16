@@ -136,7 +136,7 @@ export default function ClinicReviewsPage() {
           User reviews coming soon
         </h3>
         <p className="text-gray-500 max-w-md mx-auto">
-          We're building a trusted review system. Only patients with confirmed bookings will be able to leave reviews.
+          We&apos;re building a trusted review system. Only patients with confirmed bookings will be able to leave reviews.
         </p>
       </div>
     </div>

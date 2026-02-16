@@ -1,6 +1,5 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import { Card } from '@/components/ui/card';
 import { StatusBadge } from '@/components/StatusBadge';
@@ -14,8 +13,6 @@ interface BookingCardProps {
 }
 
 export function BookingCard({ booking, locale }: BookingCardProps) {
-  const t = useTranslations('MyBookings');
-
   const clinicName = getLocalizedText(booking.clinic.name, locale);
   const formattedDate = formatDate(booking.preferredDate, locale);
 

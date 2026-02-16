@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { getOpsQueue, getOpsStats, updateBookingStatus, type BookingRequest } from '@/lib/api';
@@ -41,7 +41,7 @@ export default function OpsPage() {
   const [selectedBooking, setSelectedBooking] = useState<BookingWithSla | null>(null);
   const [updating, setUpdating] = useState(false);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     const [queueRes, statsRes] = await Promise.all([
       getOpsQueue({ status: filter || undefined }),
@@ -54,11 +54,12 @@ export default function OpsPage() {
       setStats(statsRes.data);
     }
     setLoading(false);
-  };
+  }, [filter]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchData();
-  }, [filter]);
+  }, [fetchData]);
 
   const handleStatusUpdate = async (bookingId: string, newStatus: string) => {
     setUpdating(true);
