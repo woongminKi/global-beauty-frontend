@@ -258,3 +258,80 @@ export async function getOpsStats(): Promise<
 > {
   return fetchApi('/v1/ops/stats');
 }
+
+// Reviews API
+export interface Review {
+  _id: string;
+  user: { _id: string; name: string };
+  rating: number;
+  title: string;
+  content: string;
+  procedure: string;
+  visitDate: string;
+  photos: string[];
+  isVerified: boolean;
+  helpfulCount: number;
+  createdAt: string;
+}
+
+export interface ReviewStats {
+  averageRating: number;
+  totalReviews: number;
+  ratingDistribution: Record<number, number>;
+}
+
+export async function getClinicReviewsList(
+  clinicId: string,
+  params?: { page?: number; limit?: number; sort?: string }
+): Promise<ApiResponse<PaginatedResponse<Review> & { stats: ReviewStats }>> {
+  const query = new URLSearchParams();
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined) query.set(key, String(value));
+    });
+  }
+  return fetchApi(`/v1/reviews/clinic/${clinicId}?${query}`);
+}
+
+export async function createReview(data: {
+  bookingId: string;
+  rating: number;
+  title: string;
+  content: string;
+  photos?: string[];
+}): Promise<ApiResponse<{ id: string; message: string }>> {
+  return fetchApi('/v1/reviews', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+}
+
+export async function canReviewBooking(
+  bookingId: string
+): Promise<ApiResponse<{ canReview: boolean; reason?: string }>> {
+  return fetchApi(`/v1/reviews/can-review/${bookingId}`);
+}
+
+export async function getMyReviews(): Promise<
+  ApiResponse<{
+    items: Array<{
+      _id: string;
+      clinic: { _id: string; name: LocalizedString };
+      rating: number;
+      title: string;
+      content: string;
+      procedure: string;
+      visitDate: string;
+      photos: string[];
+      createdAt: string;
+    }>;
+  }>
+> {
+  return fetchApi('/v1/reviews/my-reviews');
+}
+
+export async function markReviewHelpful(
+  reviewId: string
+): Promise<ApiResponse<{ helpfulCount: number }>> {
+  return fetchApi(`/v1/reviews/${reviewId}/helpful`, { method: 'POST' });
+}

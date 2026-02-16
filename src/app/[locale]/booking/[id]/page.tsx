@@ -7,8 +7,10 @@ import { Link } from '@/i18n/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { StatusBadge } from '@/components/StatusBadge';
-import { getBookingRequest, type BookingRequest } from '@/lib/api';
+import { getBookingRequest, canReviewBooking, createReview, type BookingRequest } from '@/lib/api';
 import { getLocalizedText, formatDate, formatCurrency, type Locale } from '@/lib/utils';
+import { useAuth } from '@/contexts/AuthContext';
+import { Input } from '@/components/ui/input';
 import {
   ArrowLeft,
   Building2,
@@ -21,6 +23,8 @@ import {
   Copy,
   Check,
   Loader2,
+  Star,
+  X,
 } from 'lucide-react';
 
 export default function BookingDetailPage() {
@@ -28,6 +32,7 @@ export default function BookingDetailPage() {
   const tStatus = useTranslations('MyBookings');
   const params = useParams();
   const searchParams = useSearchParams();
+  const { isAuthenticated } = useAuth();
 
   const locale = (params.locale as Locale) || 'en';
   const bookingId = params.id as string;
@@ -37,6 +42,15 @@ export default function BookingDetailPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
+
+  // Review state
+  const [canReview, setCanReview] = useState(false);
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewTitle, setReviewTitle] = useState('');
+  const [reviewContent, setReviewContent] = useState('');
+  const [reviewSubmitting, setReviewSubmitting] = useState(false);
+  const [reviewError, setReviewError] = useState('');
 
   useEffect(() => {
     async function fetchBooking() {
@@ -59,6 +73,46 @@ export default function BookingDetailPage() {
       fetchBooking();
     }
   }, [bookingId, accessCode]);
+
+  // Check if user can write a review
+  useEffect(() => {
+    async function checkCanReview() {
+      if (isAuthenticated && booking?.status === 'confirmed') {
+        const res = await canReviewBooking(bookingId);
+        if (res.success && res.data?.canReview) {
+          setCanReview(true);
+        }
+      }
+    }
+    checkCanReview();
+  }, [isAuthenticated, booking?.status, bookingId]);
+
+  const handleSubmitReview = async () => {
+    if (!reviewTitle || !reviewContent) {
+      setReviewError('Please fill in all fields');
+      return;
+    }
+
+    setReviewSubmitting(true);
+    setReviewError('');
+
+    const res = await createReview({
+      bookingId,
+      rating: reviewRating,
+      title: reviewTitle,
+      content: reviewContent,
+    });
+
+    if (res.success) {
+      setShowReviewModal(false);
+      setCanReview(false);
+      // Show success message or refresh
+    } else {
+      setReviewError(res.error || 'Failed to submit review');
+    }
+
+    setReviewSubmitting(false);
+  };
 
   const copyAccessCode = async () => {
     if (booking?.accessCode) {
@@ -282,6 +336,24 @@ export default function BookingDetailPage() {
         </Card>
       )}
 
+      {/* Write Review Button */}
+      {canReview && (
+        <Card className="mb-4 border-yellow-200 bg-yellow-50">
+          <CardContent className="py-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="font-medium text-yellow-800">Share your experience!</p>
+                <p className="text-sm text-yellow-600">Help others by writing a review</p>
+              </div>
+              <Button onClick={() => setShowReviewModal(true)}>
+                <Star className="mr-2 h-4 w-4" />
+                Write Review
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Access Code */}
       {booking.accessCode && (
         <Card>
@@ -302,6 +374,83 @@ export default function BookingDetailPage() {
             </div>
           </CardContent>
         </Card>
+      )}
+
+      {/* Review Modal */}
+      {showReviewModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="w-full max-w-lg rounded-2xl bg-white">
+            <div className="flex items-center justify-between border-b p-4">
+              <h2 className="text-xl font-bold">Write a Review</h2>
+              <button onClick={() => setShowReviewModal(false)} className="text-gray-400 hover:text-gray-600">
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="space-y-4 p-6">
+              {/* Rating */}
+              <div>
+                <label className="mb-2 block text-sm font-medium">Rating</label>
+                <div className="flex gap-1">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button
+                      key={star}
+                      type="button"
+                      onClick={() => setReviewRating(star)}
+                      className="focus:outline-none"
+                    >
+                      <Star
+                        className={`h-8 w-8 ${
+                          star <= reviewRating
+                            ? 'fill-yellow-400 text-yellow-400'
+                            : 'text-gray-300'
+                        }`}
+                      />
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Title */}
+              <div>
+                <label className="mb-2 block text-sm font-medium">Title</label>
+                <Input
+                  value={reviewTitle}
+                  onChange={(e) => setReviewTitle(e.target.value)}
+                  placeholder="Summarize your experience"
+                  maxLength={100}
+                />
+              </div>
+
+              {/* Content */}
+              <div>
+                <label className="mb-2 block text-sm font-medium">Your Review</label>
+                <textarea
+                  value={reviewContent}
+                  onChange={(e) => setReviewContent(e.target.value)}
+                  placeholder="Share details about your experience..."
+                  rows={5}
+                  maxLength={2000}
+                  className="w-full rounded-lg border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                />
+                <p className="mt-1 text-xs text-gray-500">{reviewContent.length}/2000</p>
+              </div>
+
+              {reviewError && (
+                <p className="text-sm text-red-600">{reviewError}</p>
+              )}
+            </div>
+
+            <div className="flex justify-end gap-3 border-t p-4">
+              <Button variant="outline" onClick={() => setShowReviewModal(false)}>
+                Cancel
+              </Button>
+              <Button onClick={handleSubmitReview} disabled={reviewSubmitting}>
+                {reviewSubmitting ? 'Submitting...' : 'Submit Review'}
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
