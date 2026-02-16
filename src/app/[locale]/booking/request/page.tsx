@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useParams, useSearchParams } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
@@ -157,9 +158,9 @@ export default function BookingRequestPage() {
       {clinic && (
         <div className="mb-6 rounded-2xl border border-primary/20 bg-primary/5 p-4">
           <div className="flex items-center gap-4">
-            <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-muted">
+            <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-xl bg-muted">
               {clinic.images[0] ? (
-                <img src={clinic.images[0]} alt="" className="h-full w-full object-cover" />
+                <Image src={clinic.images[0]} alt="" fill className="object-cover" unoptimized />
               ) : (
                 <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20">
                   <span className="text-xl font-bold text-primary/40">

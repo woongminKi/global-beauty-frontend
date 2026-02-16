@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { useParams } from 'next/navigation';
 import { Link } from '@/i18n/navigation';
@@ -63,12 +64,14 @@ export default function ClinicDetailPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Image Gallery */}
-      <div className="mb-6 aspect-video overflow-hidden rounded-2xl bg-muted">
+      <div className="relative mb-6 aspect-video overflow-hidden rounded-2xl bg-muted">
         {clinic.images[0] ? (
-          <img
+          <Image
             src={clinic.images[0]}
             alt={getLocalizedText(clinic.name, locale)}
-            className="h-full w-full object-cover"
+            fill
+            className="object-cover"
+            unoptimized
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-primary/20 to-accent/20">

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { useParams } from 'next/navigation';
@@ -109,10 +110,13 @@ export function Header() {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
               >
                 {user.profileImage ? (
-                  <img
+                  <Image
                     src={user.profileImage}
                     alt={user.name}
-                    className="h-8 w-8 rounded-full"
+                    width={32}
+                    height={32}
+                    className="rounded-full"
+                    unoptimized
                   />
                 ) : (
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
@@ -211,10 +215,13 @@ export function Header() {
               <div className="mt-4 rounded-lg border border-border p-3">
                 <div className="flex items-center gap-3">
                   {user.profileImage ? (
-                    <img
+                    <Image
                       src={user.profileImage}
                       alt={user.name}
-                      className="h-10 w-10 rounded-full"
+                      width={40}
+                      height={40}
+                      className="rounded-full"
+                      unoptimized
                     />
                   ) : (
                     <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-medium text-primary-foreground">
